@@ -1,0 +1,33 @@
+apply plugin: 'java'
+
+sourceSets {
+	main {
+		java {
+			srcDirs = ['src']
+		}
+	}
+}
+
+dependencies {
+	compile fileTree('../libs/')
+	compile files('../DynamicMappings/mcremapped.jar')
+	compile rootProject.project(':MeddleAPI')
+}
+
+gradle.projectsEvaluated {
+    tasks.withType(JavaCompile) {
+        options.compilerArgs << "-Xlint:-options"
+    }
+}
+
+sourceCompatibility = '1.7'
+targetCompatibility = '1.7'
+
+jar {
+    baseName = 'justbackpack'
+    version = 'v1.0-alpha'
+    
+    manifest {
+		attributes('MeddleAPI-Mods' : 'net.fybertech.itemtest.Mod')
+	}   
+}
