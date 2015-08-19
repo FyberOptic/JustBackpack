@@ -1,12 +1,18 @@
 apply plugin: 'java'
 
+
 sourceSets {
 	main {
 		java {
-			srcDirs = ['src']
+			srcDirs = ['src/java']
+		}
+		
+		resources {
+			srcDirs = ['src/resources']
 		}
 	}
 }
+
 
 dependencies {
 	compile fileTree('../libs/')
@@ -14,20 +20,23 @@ dependencies {
 	compile rootProject.project(':MeddleAPI')
 }
 
+
 gradle.projectsEvaluated {
     tasks.withType(JavaCompile) {
         options.compilerArgs << "-Xlint:-options"
     }
 }
 
+
 sourceCompatibility = '1.7'
 targetCompatibility = '1.7'
 
+
 jar {
     baseName = 'justbackpack'
-    version = 'v1.0-alpha'
-    
+    version = '1.0'
+	
     manifest {
-		attributes('MeddleAPI-Mods' : 'net.fybertech.itemtest.Mod')
+		attributes('MeddleAPI-Mods' : 'net.fybertech.meddlebackpack.BackpackMod')
 	}   
 }
