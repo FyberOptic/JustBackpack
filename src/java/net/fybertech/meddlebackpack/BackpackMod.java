@@ -18,7 +18,11 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 
+// TODO - Get EntityPlayerSP from Minecraft, use that to patch displayGui for custom IInteractionObjects
 
+
+
+// version 1.0.1-alpha
 public class BackpackMod
 {
 

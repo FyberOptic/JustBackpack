@@ -1,14 +1,22 @@
 package net.fybertech.meddlebackpack;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.ContainerChest;
 import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.IChatComponent;
+import net.minecraft.world.IInteractionObject;
 
-public class InventoryBackpack extends InventoryBasic
+public class InventoryBackpack extends InventoryBasic implements IInteractionObject
 {
 
 	final NBTTagCompound backpackTag;
+	int slotNum = -1;
 
 
 	public InventoryBackpack(String title, boolean customName, int slotCount, NBTTagCompound tag)
@@ -66,6 +74,32 @@ public class InventoryBackpack extends InventoryBasic
 
 		NBTTagList inventory = this.saveInventoryToNBT();
 		backpackTag.setTag("inventory", inventory);
+	}
+
+
+	@Override
+	public Container createContainer(InventoryPlayer arg0, EntityPlayer arg1) 
+	{
+		return new ContainerChest(arg0, this, arg1);
+	}
+
+
+	@Override
+	public String getGuiID() {
+		return "meddlebackpack:backpack";
+	}
+
+
+	public void setSlotNum(int slot) {
+		this.slotNum = slot;
+	}
+	
+	
+	@Override
+	public IChatComponent getDisplayName()
+	{
+		//return new ChatComponentText("slot:" + slotNum);
+		return new ChatComponentText(slotNum + "|" + getName());
 	}
 
 }

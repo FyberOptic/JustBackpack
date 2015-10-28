@@ -1,5 +1,7 @@
-apply plugin: 'java'
+apply from: 'meddle.gradle'
 
+sourceCompatibility = '1.7'
+targetCompatibility = '1.7'
 
 sourceSets {
 	main {
@@ -13,30 +15,32 @@ sourceSets {
 	}
 }
 
-
-dependencies {
-	compile fileTree('../libs/')
-	compile files('../DynamicMappings/mcremapped.jar')
-	compile rootProject.project(':MeddleAPI')
+greddle {
+    cacheDir = 'cache'
 }
 
-
-gradle.projectsEvaluated {
-    tasks.withType(JavaCompile) {
-        options.compilerArgs << "-Xlint:-options"
-    }
+meddle {
+    version = "1.2.2"
 }
 
+dynamicmappings {
+    version = "018"
+}
 
-sourceCompatibility = '1.7'
-targetCompatibility = '1.7'
+meddleapi {
+    version = "1.0.5"
+}
+
+minecraft {
+    version = '15w44a'
+}
 
 
 jar {
     baseName = 'justbackpack'
-    version = '1.0'
+    version = '1.0.1-alpha'
 	
     manifest {
 		attributes('MeddleAPI-Mods' : 'net.fybertech.meddlebackpack.BackpackMod')
-	}   
+	}
 }
