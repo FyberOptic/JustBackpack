@@ -7,11 +7,14 @@ import net.fybertech.meddleapi.MeddleClient;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.inventory.GuiChest;
+import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.inventory.EnumContainerAction;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.world.IInteractionObject;
 
@@ -24,6 +27,18 @@ public class ClientProxy extends CommonProxy implements MeddleClient.IDisplayGui
 		super.init();
 		
 		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(BackpackMod.backpackItem, 0, new ModelResourceLocation("meddleBackpack", "inventory"));
+		
+		Minecraft.getMinecraft().itemColors.registerItemColor(new IItemColor() {
+
+			@Override
+			public int getItemColor(ItemStack arg0, int arg1) {
+				Item item = arg0.getItem();
+				if (item instanceof ItemBackpack) {
+					return ((ItemBackpack)item).getColorFromItemStack(arg0,  arg1);
+				}
+				return 0xFFFFFFFF;
+			}			
+		}, BackpackMod.backpackItem);
 		
 		MeddleClient.registerGuiHandler(this);
 	}

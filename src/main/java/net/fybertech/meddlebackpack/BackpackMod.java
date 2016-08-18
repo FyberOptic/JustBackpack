@@ -22,7 +22,7 @@ import net.minecraft.item.crafting.CraftingManager;
 
 
 
-// version 1.0.1-alpha
+// version 1.0.2
 public class BackpackMod
 {
 

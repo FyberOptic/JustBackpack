@@ -32,16 +32,18 @@ public class ItemBackpack extends Item
 
 	
 	@Override
-	public ItemUseResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, MainOrOffHand hand,
+	public ItemUseResult onItemUse(EntityPlayer player, World world, BlockPos pos, MainOrOffHand hand,
 			EnumFacing facing, float x, float y, float z)
 	{
-		return super.onItemUse(stack,  player,  world,  pos,  hand,  facing,  x,  y,  z);
+		return super.onItemUse(player,  world,  pos,  hand,  facing,  x,  y,  z);
 	}
 
 	
 	@Override
-	public ObjectActionHolder<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, MainOrOffHand hand)
+	public ObjectActionHolder<ItemStack> onItemRightClick(World world, EntityPlayer player, MainOrOffHand hand)
 	{
+		ItemStack stack = player.getHeldItem(hand);
+		
 		if (!world.isRemote)
 		{
 			InventoryBackpack backpackInventory = getInventory(stack);
@@ -77,7 +79,7 @@ public class ItemBackpack extends Item
 	}
 
 
-	@Override
+	//@Override
 	public int getColorFromItemStack(ItemStack stack, int renderPass)
 	{
 		return 0x955E3B;

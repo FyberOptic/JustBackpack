@@ -32,7 +32,7 @@ public class InventoryBackpack extends InventoryBasic implements IInteractionObj
 		int inventorySize = this.getSizeInventory();
 		for (int n = 0; n < inventorySize; n++)
 		{
-			this.setInventorySlotContents(n, null);
+			this.setInventorySlotContents(n, ItemStack.NULL_STACK);
 		}
 
 		int tagCount = tag.tagCount();
@@ -43,7 +43,7 @@ public class InventoryBackpack extends InventoryBasic implements IInteractionObj
 			int slotNum = slotTag.getByte("Slot") & 255;
 			if (slotNum < 0 || slotNum >= inventorySize) continue;
 
-			this.setInventorySlotContents(slotNum, ItemStack.loadItemStackFromNBT(slotTag));
+			this.setInventorySlotContents(slotNum, new ItemStack(slotTag));
 		}
 	}
 

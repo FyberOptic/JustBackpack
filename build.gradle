@@ -3,7 +3,7 @@ apply from: 'meddle.gradle'
 sourceCompatibility = '1.7'
 targetCompatibility = '1.7'
 
-sourceSets {
+/*sourceSets {
 	main {
 		java {
 			srcDirs = ['src/java']
@@ -13,7 +13,7 @@ sourceSets {
 			srcDirs = ['src/resources']
 		}
 	}
-}
+}*/
 
 greddle {
     cacheDir = 'cache'
@@ -24,21 +24,22 @@ meddle {
 }
 
 dynamicmappings {
-    version = "018"
+    version = "027"
+    //location = "../dynamicmappings/build/libs/dynamicmappings-026.jar"
 }
 
 meddleapi {
-    version = "1.0.5"
+    version = "1.0.6"
 }
 
 minecraft {
-    version = '15w44a'
+    version = '16w33a'
 }
 
 
 jar {
     baseName = 'justbackpack'
-    version = '1.0.1-alpha'
+    version = '1.0.2'
 	
     manifest {
 		attributes('MeddleAPI-Mods' : 'net.fybertech.meddlebackpack.BackpackMod')

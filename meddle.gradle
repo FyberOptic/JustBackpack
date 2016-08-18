@@ -67,8 +67,8 @@ afterEvaluate {
     println 'Using Meddle v' + project.meddle.version
     println 'Using DynamicMappings ' + project.dynamicmappings.version
     println 'Using MeddleAPI v' + project.meddleapi.version
-    println ''
-    
+    println ''    
+ 
     if (project.meddle.location == null) {
         dependencies { compile group: "net.fybertech", name: "meddle", version: "${project.meddle.version}" }
     }

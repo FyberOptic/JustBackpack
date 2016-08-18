@@ -66,17 +66,17 @@ public class ContainerBackpack extends Container
             {
                 if (!this.mergeItemStack(stack, this.numRows * 9, this.inventorySlots.size(), true))
                 {
-                    return null;
+                    return ItemStack.NULL_STACK;
                 }
             }
             else if (!this.mergeItemStack(stack, 0, this.numRows * 9, false))
             {
-                return null;
+                return ItemStack.NULL_STACK;
             }
 
-            if (stack.stackSize == 0)
+            if (stack.getStackSize() == 0)
             {
-                slot.putStack(null);
+                slot.putStack(ItemStack.NULL_STACK);
             }
             else
             {
@@ -84,7 +84,7 @@ public class ContainerBackpack extends Container
             }
         }
 
-        return stack;
+        return stack == null ? ItemStack.NULL_STACK : stack;
     }
 
     
